@@ -1,4 +1,4 @@
-### Tomke wiesz co robić :))
+# Tomke wiesz co robić :))
 > nie spierdol tego
 
 ---
