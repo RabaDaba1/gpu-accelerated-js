@@ -1,0 +1,114 @@
+$dark-gray: #DCDDE1;
+$white: #FFFFFF;
+$light-green: #4CD137;
+$green: #44bd32;
+$text-color: #292F37;
+$text-light-color: rgba(53, 59, 72, 0.55);
+
+@mixin listText {
+    font-size: 33px;
+    font-weight: 600;
+    color: $text-color;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: $dark-gray;
+}
+
+.wrapper {
+    position: relative;
+    width: 690px;
+    margin: 180px auto;
+}
+
+.options {
+    display: inline-block;
+}
+.start__wrapper {
+    display: flex;
+    margin-bottom: 30px;
+
+    .start {
+        all: unset;
+        margin-left: auto;
+        padding: 4px 20px;
+        color: $white;
+        font-size: 33px;
+        font-weight: 600;
+        text-align: center;
+        background-color: $light-green;
+        border-radius: 8px;
+        transition: .2s;
+    
+        &:hover {
+            background-color: $green;
+        }
+    }
+}
+
+
+.repetitions__input {
+    all: unset;
+    width: 30px;
+}
+
+.results {
+    div {
+        margin-bottom: 5px;
+    }
+
+    .results__result {
+        position: relative;
+        padding: 7px 70px 7px 20px;
+        background-color: $white;
+        border-radius: 8px;
+        @include listText();
+        animation: slidein 1.25s;
+
+        .results__title {
+            display: inline-block;
+        }
+
+        .results__score {
+            float: right;
+        }
+    }
+
+    .results__stop {
+        position: relative;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        color: $text-light-color;
+        animation: slidein .75s;
+    }
+}
+
+// @keyframes flyins {
+//     from {
+//         opacity: 0;
+//         bottom: -30px;
+//     }
+//     to {
+//         opacity: 1;
+//         bottom: 0;
+//     }
+// }
+
+@keyframes slidein {
+    from {
+        opacity: 0;
+        right: -150px;
+    }
+    to {
+        opacity: 1;
+        right: 0;
+    }
+}

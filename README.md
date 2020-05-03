@@ -8,7 +8,7 @@ npm i
 node index.js
 ```
 
-** Czasy **
+**Czasy**
 1. _Tomek_ `Gtx 1650 Mobile`
 -Plain JS: 2.239s
 -Kernel 1 Thread: 3.666s
