@@ -1,0 +1,14 @@
+{
+  "name": "psc-cracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kacper Rabczewski",
+  "license": "MIT",
+  "dependencies": {
+    "gpu.js": "^2.9.4"
+  }
+}
