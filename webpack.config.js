@@ -3,14 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const extractPlugin = new MiniCssExtractPlugin({
-    filename: 'main.css'
+    filename: 'stylesheets/main.css'
 });
 
 module.exports = {
-    entry: ['./src/index.js'],
+    entry: ['./src/js/index.js', './src/stylesheets/_main.scss'],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'js/bundle.js'
     },
     devServer: {
         contentBase: './dist'

@@ -1,4 +1,3 @@
-import './_main.scss';
 import StressTest from './models/StressTests';
 import * as stressTestView from './views/stressTestView';
 
