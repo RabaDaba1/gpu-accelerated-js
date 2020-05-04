@@ -9,17 +9,17 @@
 <body>
     <div class="wrapper">
         <!-- <div class="options">
-            <label class="options__option">
+            <label class="options__label">
                 <span class="options__name">JS (CPU)</span>
-                <input type="checkbox" id="js-cpu">
+                <input type="checkbox" data-test-name="testPlainJS" class="options__options">
             </label>
-            <label class="options__option">
+            <label class="options__label">
                 <span class="options__name">Kernel (GPU 1 Thread)</span>
-                <input type="checkbox" id="kernel-1">
+                <input type="checkbox" data-test-name="testKernel1" class="options__options">
             </label>
-            <label class="options__option">
+            <label class="options__label">
                 <span class="options__name" >Kernel (GPU 3 Thread)</span>
-                <input type="checkbox" id="kernel-3">
+                <input type="checkbox" data-test-name="testKernel3" class="options__options">
             </label>
         </div>
         <label class="repetitions">
@@ -27,7 +27,7 @@
             <input class="repetitions__input" type="number" min="1">
         </label> -->
         <div class="start__wrapper">
-            <button class="start">Start</button>
+            <button class="start">Benchmark</button>
         </div>
         <div class="results">
             <!-- <div class="results__result">
