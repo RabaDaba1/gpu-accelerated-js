@@ -7,6 +7,7 @@ export const stressTests = {
         for (let i = 0; i < 10000000; i++) {
                 arr.push(i);
         }
+        return arr;
     },
 
     testKernel1: gpu.createKernel(function() {
@@ -17,7 +18,7 @@ export const stressTests = {
         return this.thread.x+this.thread.y*1000+this.thread.z*100000;
     }).setOutput([1000, 100, 100]),
 
-    runTest(testName, iterations=100) {
+    runTest(testName, iterations=50) {
         const start = Date.now();
         for (let i = 0; i < iterations; i++) {
             this[testName]();

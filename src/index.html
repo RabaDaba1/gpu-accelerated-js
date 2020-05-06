@@ -4,46 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Benchmark</title>
 </head>
 <body>
     <div class="wrapper">
-        <!-- <div class="options">
-            <label class="options__label">
-                <span class="options__name">JS (CPU)</span>
-                <input type="checkbox" data-test-name="testPlainJS" class="options__options">
-            </label>
-            <label class="options__label">
-                <span class="options__name">Kernel (GPU 1 Thread)</span>
-                <input type="checkbox" data-test-name="testKernel1" class="options__options">
-            </label>
-            <label class="options__label">
-                <span class="options__name" >Kernel (GPU 3 Thread)</span>
-                <input type="checkbox" data-test-name="testKernel3" class="options__options">
-            </label>
-        </div>
-        <label class="repetitions">
-            <span>Powtórzenia</span>
-            <input class="repetitions__input" type="number" min="1">
-        </label> -->
-        <div class="start__wrapper">
-            <button class="start">Benchmark</button>
-        </div>
-        <div class="results">
-            <!-- <div class="results__result">
-                <div class="results__title">Plain JavaScipt</div>
-                <div class="results__score">3.632s</div>
+        <div class="controls">
+            <div class="options">
+                <button class="options__btn">Options</button>
+                <div class="options__content">
+                    <div class="options__label">
+                        <span class="options__name">JS (CPU)</span>
+                        <input type="checkbox" name="testPlainJS" class="options__option" data-intensiveon="cpu" checked>
+                    </div>
+                    <div class="options__label">
+                        <span class="options__name">Kernel (GPU 1 Thread)</span>
+                        <input type="checkbox" name="testKernel1" class="options__option" data-intensiveon="gpu" checked>
+                    </div>
+                    <div class="options__label">
+                        <span class="options__name" >Kernel (GPU 3 Thread)</span>
+                        <input type="checkbox" name="testKernel3" class="options__option" data-intensiveon="gpu" checked>
+                    </div>
+                    <div class="options__label">
+                        <span>Powtórzenia</span>
+                        <input class="options__iterations" type="number" min="1" value="50">
+                    </div>
+                </div>
             </div>
-            <div class="results__stop">10s stop</div>
+            <button class="start"><div class="spinner"></div>Benchmark</button>
+        </div>
+        <div class="results ghost">
+            <h1 class="results__header ghost">Results</h1>
+
             <div class="results__result">
-                <div class="results__title">Kernel 1</div>
-                <div class="results__score">3.632s</div>
+                <div class="results__result-tab">
+                    <div class="results__title">Plain JavaScipt</div>
+                    <div class="results__score">3.632s</div>
+                </div>
             </div>
-            <div class="results__stop">10s stop</div>
+
+            <div class="results__stop">30s stop</div>
+
             <div class="results__result">
-                <div class="results__title">Kernel 3 </div>
-                <div class="results__score">3.632s</div>
-            </div> -->
+                <div class="results__result-tab">
+                    <div class="results__title">Kernel 1</div>
+                    <div class="results__score">1.482s</div>
+                </div>
+            </div>
+            
+            <div class="results__stop">30s stop</div>
+
+            <div class="results__result">
+                <div class="results__result-tab">
+                    <div class="results__title">Kernel 3</div>
+                    <div class="results__score">1.994s</div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

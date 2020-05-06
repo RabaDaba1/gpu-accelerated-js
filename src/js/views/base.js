@@ -1,7 +1,9 @@
 export const elements = {
-    jsOption: document.querySelector('#js-cpu'),
-    kernel1Option: document.querySelector('#kernel-1'),
-    kenrel3Option: document.querySelector('#kernel-3'),
-    repetitionCount: document.querySelector('.repetitions'),
+    html: document.querySelector('html'),
+    startBtn: document.querySelector('.start'),
+    optionsBtn: document.querySelector('.options__btn'),
+    optionsContent: document.querySelector('.options__content'),
+    optionsCheckboxes: document.querySelectorAll('.options__option[type="checkbox"]'),
+    iterations: document.querySelector('.options__iterations'),
     results: document.querySelector('.results')
 }

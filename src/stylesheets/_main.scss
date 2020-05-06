@@ -1,108 +1,256 @@
+/**
+* COLORS
+**/
 $dark-gray: #DCDDE1;
 $white: #FFFFFF;
-$light-green: #4CD137;
-$green: #44bd32;
-$text-color: #292F37;
-$text-light-color: rgba(53, 59, 72, 0.55);
+$orange: #c23616;
+$ghost-color: rgba($color: #b9b9b9, $alpha: 0.6);;
+$darker-dark: rgb(38, 44, 51);
+$dark: #292F37;
+$medium-dark: #2f3640;
+$lighter-dark: #353b48;
 
+/**
+* FONT SIZES
+**/
+$font-size-xl: calc((100% + 0.25vw) * 1.5);
+$font-size-l: calc((100% + 0.25vw) * 1.2);
+$font-size-s: calc((100% + 0.25vw) * 0.9);
+$font-size-xs: calc((100% + 0.25vw) * 0.75);
+
+/**
+* MIXINS
+**/
 @mixin listText {
-    font-size: 33px;
+    font-size: $font-size-xl;
     font-weight: 600;
-    color: $text-color;
+    color: $white;
 }
 
+@mixin hoverHighlight {
+    &:hover {
+        background-color: $darker-dark;
+    }
+}
+
+@mixin buttonBold($textColor, $bgColor) {
+    all: unset;
+    padding: 4px 20px;
+    background-color: $bgColor;
+    border-radius: 8px;
+    color: $textColor;
+    font-size: $font-size-xl;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+@mixin underResultElementInfo() {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    font-size: $font-size-l;
+    font-weight: 600;
+    cursor: default;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+/**
+* RESETS
+**/
 * {
+    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    height: 100vh;
 }
 
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    background-color: $dark-gray;
+    background-color: $lighter-dark;
 }
 
+/**
+* WRAPPER
+**/
 .wrapper {
     position: relative;
     width: 690px;
     margin: 180px auto;
 }
 
-.options {
-    display: inline-block;
-}
-
-.start__wrapper {
+/**
+* CONTROLS
+**/
+.controls {
+    position: relative;
     display: flex;
-    margin-bottom: 30px;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+    .options {
+        position: relative;
+        display: inline-block;
+        
+        .options__btn {
+            @include buttonBold($white, $dark);
+            @include hoverHighlight();
+        }
+
+        .options__content {
+            position: absolute;
+            visibility: hidden;
+            height: 0;
+            top: 60px;
+            left: 0;
+            border: 1px;
+            border-radius: 8px;
+            background-color: $white;
+            width: max-content;
+            padding: 8px 10px;
+            z-index: 1;
+            transition: height .25s ease-in, visibility .25s;
+
+        .options__label {
+            display: block;
+            text-align: left;
+            color: $dark;
+            font-size: $font-size-xs;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity .25s;
+        }
+
+        &.active .options__label {
+            opacity: 1;
+            transition: opacity .25s;
+        }
+
+        &.active {
+            visibility: visible;
+            height: 100px;
+            transition: visibility .25s, height .25s ease-out;
+        }
+
+    
+        .options__iterations {
+            all: unset;
+            width: 75px;
+        }
+      }
+    }
 
     .start {
-        all: unset;
-        margin-left: auto;
-        padding: 4px 20px;
-        color: $white;
-        font-size: 33px;
-        font-weight: 600;
-        text-align: center;
-        background-color: $light-green;
-        border-radius: 8px;
-        transition: .2s;
-    
-        &:hover {
-            background-color: $green;
+        @include buttonBold($white, $dark);
+        @include hoverHighlight();
+
+        &:disabled {
+            background-color: $orange;
+            cursor: default;
+
+            .spinner {
+                display: inline-block;
+                position: relative;
+                width: 23px;
+                height: 23px;
+                margin-right: 10px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                border-top-color: $white;
+                animation: 1s spin infinite ease-in;
+            }
         }
     }
 }
 
-
-.repetitions__input {
-    all: unset;
-    width: 30px;
-}
-
+/**
+* RESULTS
+**/
 .results {
-    div {
-        margin-bottom: 5px;
+    cursor: default;
+
+    & > * {
+        position: relative;
+        animation: slidein 1.25s;;
+    }
+
+    .results__header {
+        text-align: center;
+        color: $dark-gray;
     }
 
     .results__result {
-        position: relative;
-        padding: 7px 70px 7px 20px;
-        background-color: $white;
-        border-radius: 8px;
-        @include listText();
-        animation: slidein 1.25s;
-
-        .results__title {
-            display: inline-block;
+        margin-bottom: 10px;
+        
+        .results__result-tab {
+            @include listText();
+            @include hoverHighlight(); 
+            position: relative; 
+            padding: 10px 70px 10px 20px;
+            background-color: $dark;
+            border-radius: 8px;
+            left: 0;
+            cursor: pointer;
+            transition: .2s;
+            
+            .results__title { display: inline-block; }
+            
+            .results__score { float: right; }
+            &.active {
+                filter: drop-shadow(0 0 5px $dark);
+                left: 250px;
+            }
         }
-
-        .results__score {
-            float: right;
-        }
+        
+        &.cpu::before { content: 'CPU Intensive'; color: #00a8ff;}
+        &.gpu::before { content: 'GPU Intensive'; color: #4cd137; }
+        
+    }
+    
+    &:not(.ghost) .results__result::before {
+        @include underResultElementInfo();
     }
 
     .results__stop {
-        position: relative;
         text-align: center;
-        font-size: 26px;
+        font-size: $font-size-s;
         font-weight: 500;
-        color: $text-light-color;
-        animation: slidein .75s;
+        color: $dark-gray;
+    }
+
+    .results__stop { margin-bottom: 10px; }
+
+}
+
+/**
+* GHOST
+**/
+.ghost {
+    * {
+        color: $ghost-color !important;
+        cursor: default !important;
+    }
+    
+    .results__result-tab {
+        background-color: transparent !important;
+        border: 2px solid $ghost-color;
+        color: $ghost-color;
+
+        &:hover {
+            filter: none;
+        }
     }
 }
 
-// @keyframes flyins {
-//     from {
-//         opacity: 0;
-//         bottom: -30px;
-//     }
-//     to {
-//         opacity: 1;
-//         bottom: 0;
-//     }
-// }
 
+/**
+* KEYFRAMES
+**/
 @keyframes slidein {
     from {
         opacity: 0;
@@ -112,4 +260,12 @@ body {
         opacity: 1;
         right: 0;
     }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeout {
+    to { opacity: 0; }
 }

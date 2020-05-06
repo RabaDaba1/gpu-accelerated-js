@@ -1,5 +1,6 @@
 import { stressTests } from './models/stressTests';
 import * as stressTestsView from './views/stressTestsView';
+import { elements } from './views/base';
 
 /** GLOBAL STATE OF THE APP */
 const state = {};
@@ -7,29 +8,56 @@ const state = {};
 /**
  *  Stress Tests Controller
  */
-const controlStressTests = async () => {
+const controlStressTests = () => {
     
     // 1) Prepare UI
-    stressTestsView.resetResults();
+    stressTestsView.fadeoutResults();
 
-    // 2) Start testing
-    ['testPlainJS', 'testKernel1', 'testKernel3'].forEach((test, i)=> {
-        const runStressTest = test => {
-            // 1) Get times from test
-            const { start, stop } = stressTests.runTest(test);
+    setTimeout(() => {
+
+        stressTestsView.clearResluts();
+
+        // 2) Get options
+        const options = stressTestsView.getOptions();
+        const tests = [...options.tests];
+
+        if (tests.length > 0) {
+            stressTestsView.switchStartBtn();
+
+            // 3) Wait 1s to load button animations (color change and)
+            setTimeout(() => {
+                stressTestsView.renderResultsHeader('Results');
     
-            // 2) Get score
-            const score = (stop-start)/1000;
+                // 4) Start testing
+                for (let i = 0; i < tests.length; i++) {
+                    const test = tests[i];
     
-            // 3) Render results
-            stressTestsView.renderResult(test, score);
+                    setTimeout(() => {
+                        // 5) Run test
+
+                        // a) Get times from test
+                        const { start, stop } = stressTests.runTest(test.name, options.iterations);
+                
+                        // b) Get score
+                        const score = (stop-start)/1000;
+                
+                        // c) Render results
+                        stressTestsView.renderResult(test.name, test.intensiveOn, score);
     
-            // 4) Render stopper
-            stressTestsView.renderResultStop();
+                        // d) Render stopper
+                        if (i !== tests.length-1) stressTestsView.renderResultStop();
+                    }, i * 30000);         
+                }
+                
+                // 5) Switch benchmark button after all the test have finished
+                setTimeout(() => {
+                    stressTestsView.switchStartBtn();
+                }, (tests.length-1) * 30000);
+            }, 1000);
+        } else {
+            stressTestsView.renderResultsHeader('No tests selected')
         }
-
-        i === 0 ? false : true ? setTimeout(function () { runStressTest(test) }, 5000) : runStressTest(test);
-    });
+    }, 225);
 }
 
-document.querySelector('.start').addEventListener('click', controlStressTests);
+elements.startBtn.addEventListener('click', controlStressTests);
