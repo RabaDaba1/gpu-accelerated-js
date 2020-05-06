@@ -14,7 +14,7 @@
 ## Instalacja
 ```bash
 (folder direcotry) npm i
-(folder direcotry) node index.js
+(folder direcotry) npm run start
 ```
 
 **Czasy**
