@@ -46,7 +46,7 @@ $font-size-xs: calc((100% + 0.25vw) * 0.75);
     transition: .2s;
 }
 
-@mixin underResultElementInfo() {
+@mixin underResultElementInfo {
     position: absolute;
     left: 0;
     top: 50%;
@@ -55,6 +55,12 @@ $font-size-xs: calc((100% + 0.25vw) * 0.75);
     cursor: default;
     transform: translateY(-50%);
     z-index: -1;
+}
+
+@mixin setFlex ($justify-content: center, $aligin-items: center) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $aligin-items;  
 }
 
 /**
@@ -88,9 +94,8 @@ body {
 * CONTROLS
 **/
 .controls {
+    @include setFlex(space-between, none);
     position: relative;
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 50px;
 
     .options {
@@ -147,17 +152,16 @@ body {
 
     .start {
         @include buttonBold($white, $dark);
-        @include hoverHighlight();
+        @include hoverHighlight;
+        @include setFlex;
 
         &:disabled {
             background-color: $orange;
             cursor: default;
 
             .spinner {
-                display: inline-block;
-                position: relative;
-                width: 23px;
-                height: 23px;
+                width: 22px;
+                height: 22px;
                 margin-right: 10px;
                 border: 2px solid rgba(255, 255, 255, 0.3);
                 border-radius: 50%;
