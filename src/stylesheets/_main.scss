@@ -17,7 +17,7 @@ $font-sizes: (
     "xs": calc((100% + 0.25vw) * .75),
     "s": calc((100% + 0.25vw) * 0.9),
     "m": calc((100% + 0.25vw) * 1.2),
-    "l": calc((100% + 0.25vw) * 1.5)
+    "l": calc((100% + 0.25vw) * 1.4)
 );
 
 $font-weights: (
@@ -25,7 +25,9 @@ $font-weights: (
     "medium": 500
 );
 
-
+/**
+* FUNCTIONS
+*/
 @function font-size($size) {
     @return map-get($font-sizes, $size);
 }
@@ -37,29 +39,24 @@ $font-weights: (
 /**
 * MIXINS
 **/
-@mixin setFlex ($justify-content: center, $aligin-items: center) {
+@mixin set-flex ($justify-content: center, $aligin-items: center) {
     display: flex;
     justify-content: $justify-content;
     align-items: $aligin-items;  
 }
 
-@mixin set-font($size, $weight) {
+@mixin set-font ($size, $weight) {
     font-size: font-size($size);
     font-weight: font-weight($weight);
 }
 
-@mixin listText {
-    @include set-font("m", bold);
-    color: $white;
-}
-
-@mixin hoverHighlight {
+@mixin hover-highlight {
     &:hover {
         background-color: $darker-dark;
     }
 }
 
-@mixin buttonBold($textColor, $bgColor) {
+@mixin button ($textColor, $bgColor) {
     all: unset;
     @include set-font("l", bold);
     padding: 4px 20px;
@@ -70,17 +67,6 @@ $font-weights: (
     cursor: pointer;
     transition: .2s;
 }
-
-@mixin underResultElementInfo {
-    @include set-font("m", bold);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    cursor: default;
-    transform: translateY(-50%);
-    z-index: -1;
-}
-
 
 /**
 * RESETS
@@ -113,7 +99,7 @@ body {
 * CONTROLS
 **/
 .controls {
-    @include setFlex(space-between, none);
+    @include set-flex(space-between, none);
     position: relative;
     margin-bottom: 50px;
 
@@ -122,8 +108,8 @@ body {
         display: inline-block;
         
         .options__btn {
-            @include buttonBold($white, $dark);
-            @include hoverHighlight();
+            @include button($white, $dark);
+            @include hover-highlight();
         }
 
         .options__content {
@@ -169,9 +155,9 @@ body {
     }
 
     .start {
-        @include buttonBold($white, $dark);
-        @include hoverHighlight;
-        @include setFlex;
+        @include button($white, $dark);
+        @include hover-highlight;
+        @include set-flex;
 
         &:disabled {
             background-color: $orange;
@@ -210,13 +196,14 @@ body {
         margin-bottom: 10px;
         
         .results__result-tab {
-            @include listText();
-            @include hoverHighlight(); 
+            @include hover-highlight(); 
+            @include set-font("m", bold);
             position: relative; 
             padding: 10px 70px 10px 20px;
             background-color: $dark;
             border-radius: 8px;
             left: 0;
+            color: $white;
             cursor: pointer;
             transition: .2s;
             
@@ -235,7 +222,13 @@ body {
     }
     
     &:not(.ghost) .results__result::before {
-        @include underResultElementInfo();
+        @include set-font("m", bold);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        cursor: default;
+        transform: translateY(-50%);
+        z-index: -1;
     }
 
     .results__stop {
