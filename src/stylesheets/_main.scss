@@ -13,16 +13,23 @@ $lighter-dark: #353b48;
 /**
 * FONT SIZES
 **/
-$font-size-xl: calc((100% + 0.25vw) * 1.5);
-$font-size-l: calc((100% + 0.25vw) * 1.2);
-$font-size-s: calc((100% + 0.25vw) * 0.9);
-$font-size-xs: calc((100% + 0.25vw) * 0.75);
+$font-sizes: (
+    "xs": calc((100% + 0.25vw) * .75),
+    "s": calc((100% + 0.25vw) * 0.9),
+    "m": calc((100% + 0.25vw) * 1.2),
+    "l": calc((100% + 0.25vw) * 1.5)
+);
+
+
+@function font-size($size) {
+    @return map-get($font-sizes, $size);
+}
 
 /**
 * MIXINS
 **/
 @mixin listText {
-    font-size: $font-size-xl;
+    font-size: font-size(m);
     font-weight: 600;
     color: $white;
 }
@@ -39,7 +46,7 @@ $font-size-xs: calc((100% + 0.25vw) * 0.75);
     background-color: $bgColor;
     border-radius: 8px;
     color: $textColor;
-    font-size: $font-size-xl;
+    font-size: font-size(l);
     font-weight: 600;
     text-align: center;
     cursor: pointer;
@@ -50,7 +57,7 @@ $font-size-xs: calc((100% + 0.25vw) * 0.75);
     position: absolute;
     left: 0;
     top: 50%;
-    font-size: $font-size-l;
+    font-size: font-size(m);
     font-weight: 600;
     cursor: default;
     transform: translateY(-50%);
@@ -125,7 +132,7 @@ body {
             display: block;
             text-align: left;
             color: $dark;
-            font-size: $font-size-xs;
+            font-size: font-size(xs);
             font-weight: 500;
             opacity: 0;
             transition: opacity .25s;
@@ -222,7 +229,7 @@ body {
 
     .results__stop {
         text-align: center;
-        font-size: $font-size-s;
+        font-size: font-size(s);
         font-weight: 500;
         color: $dark-gray;
     }
