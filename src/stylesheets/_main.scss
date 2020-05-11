@@ -20,17 +20,36 @@ $font-sizes: (
     "l": calc((100% + 0.25vw) * 1.5)
 );
 
+$font-weights: (
+    "bold": 600,
+    "medium": 500
+);
+
 
 @function font-size($size) {
     @return map-get($font-sizes, $size);
 }
 
+@function font-weight($weight) {
+    @return map-get($font-weights, $weight);
+}
+
 /**
 * MIXINS
 **/
+@mixin setFlex ($justify-content: center, $aligin-items: center) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $aligin-items;  
+}
+
+@mixin set-font($size, $weight) {
+    font-size: font-size($size);
+    font-weight: font-weight($weight);
+}
+
 @mixin listText {
-    font-size: font-size(m);
-    font-weight: 600;
+    @include set-font("m", bold);
     color: $white;
 }
 
@@ -42,33 +61,26 @@ $font-sizes: (
 
 @mixin buttonBold($textColor, $bgColor) {
     all: unset;
+    @include set-font("l", bold);
     padding: 4px 20px;
     background-color: $bgColor;
     border-radius: 8px;
     color: $textColor;
-    font-size: font-size(l);
-    font-weight: 600;
     text-align: center;
     cursor: pointer;
     transition: .2s;
 }
 
 @mixin underResultElementInfo {
+    @include set-font("m", bold);
     position: absolute;
     left: 0;
     top: 50%;
-    font-size: font-size(m);
-    font-weight: 600;
     cursor: default;
     transform: translateY(-50%);
     z-index: -1;
 }
 
-@mixin setFlex ($justify-content: center, $aligin-items: center) {
-    display: flex;
-    justify-content: $justify-content;
-    align-items: $aligin-items;  
-}
 
 /**
 * RESETS
@@ -129,11 +141,10 @@ body {
             transition: height .25s ease-in, visibility .25s;
 
         .options__label {
+            @include set-font("xs", medium);
             display: block;
             text-align: left;
             color: $dark;
-            font-size: font-size(xs);
-            font-weight: 500;
             opacity: 0;
             transition: opacity .25s;
         }
@@ -228,9 +239,8 @@ body {
     }
 
     .results__stop {
+        @include set-font("s", medium);
         text-align: center;
-        font-size: font-size(s);
-        font-weight: 500;
         color: $dark-gray;
     }
 
