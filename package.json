@@ -11,9 +11,14 @@
   "author": "Kacper Rabczewski",
   "license": "MIT",
   "dependencies": {
+    "core-js": "^3.6.5",
+    "regenerator-runtime": "^0.13.5",
     "gpu.js": "^2.9.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "html-webpack-plugin": "^4.3.0",
