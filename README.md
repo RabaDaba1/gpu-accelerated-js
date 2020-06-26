@@ -1,5 +1,5 @@
 # Gpu accelerated js benchamark
-> Unfortunately browser and gpu.js can't use enough of the gpu to make stress test valid
+> Unfortunately browser and gpu.js can't use enough of the gpu power to make stress test valid
 
 ---
 
