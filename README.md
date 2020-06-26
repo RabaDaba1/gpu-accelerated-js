@@ -1,5 +1,5 @@
 # Gpu accelerated js benchamark
-> Simple way to stress test your computer in your browser
+> Unfortunately browser and gpu.js can't use enough of the gpu to make stress test valid
 
 ---
 
